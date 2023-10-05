@@ -1,0 +1,34 @@
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="プロコン接続.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <form id="masson">
+            <input type="number" id="0" onkeyup="moveToNextField(this, '1')" placeholder="職人1の行動">
+            <input type="number" id="1" onkeyup="moveToNextField(this, '2')" placeholder="職人2の行動">
+            <input type="number" id="2" onkeyup="moveToNextField(this, '3')" placeholder="職人3の行動">
+            <input type="number" id="3" onkeyup="moveToNextField(this, '4')" placeholder="職人4の行動">
+            <input type="number" id="4" onkeyup="moveToNextField(this, '5')" placeholder="職人5の行動">
+            <input type="number" id="5" placeholder="職人6の行動">
+        </form>
+        <div class="masson">
+            <input type="text" id="massons_number" placeholder="職人の数">
+            <button id="massons" onclick="getMasson_number()">職人の数を送信</button>
+        </div>
+        <div class="conneciton">
+            <button class="button" onclick="POST()">POST</button>
+            <button class="button" onclick="GET()"> GET</button>
+        </div>
+    </div>
+    <script src="./プロコン接続.js">
+    </script>
+</body>
+
+</html>
