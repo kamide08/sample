@@ -9,8 +9,15 @@
 </head>
 
 <body>
+    <div>
+        <p id="TotalTurn">ターン数は</p>
+        <p id="game_time">制限時間は</p>
+    </div>
     <div class="main">
-        <form id="masson">
+        <p id="turn">手番は</p>
+        <p id="mason_number">職人の数は</p>
+        <p id="CurrentTurn">現在のターンは</p>
+        <form id="mason">
             <input type="number" id="0" onkeyup="moveToNextField(this, '1')" placeholder="職人1の行動">
             <input type="number" id="1" onkeyup="moveToNextField(this, '2')" placeholder="職人2の行動">
             <input type="number" id="2" onkeyup="moveToNextField(this, '3')" placeholder="職人3の行動">
@@ -18,13 +25,10 @@
             <input type="number" id="4" onkeyup="moveToNextField(this, '5')" placeholder="職人5の行動">
             <input type="number" id="5" placeholder="職人6の行動">
         </form>
-        <div class="masson">
-            <input type="text" id="massons_number" placeholder="職人の数">
-            <button id="massons" onclick="getMasson_number()">職人の数を送信</button>
-        </div>
         <div class="conneciton">
             <button class="button" onclick="POST()">POST</button>
-            <button class="button" onclick="GET()"> GET</button>
+            <button class="button" onclick="GET_Always()"> GET</button>
+            <button class="button" onclick="GET_First()"> 試合情報取得</button>
         </div>
     </div>
     <script src="./interface.js">
