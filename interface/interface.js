@@ -2,19 +2,22 @@ let Http_1 = new XMLHttpRequest();
 let Http_2 = new XMLHttpRequest();
 let Http_3 = new XMLHttpRequest();
 const url_1 = 'https://www.procon.gr.jp/matches?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';
-const url_2 = 'https://www.procon.gr.jp/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';
+let url_2 = 'https://www.procon.gr.jp/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';//適宜idを変更
 let btn = document.getElementById('button');
 let game_number;//参加する試合の番号
 let games;//参加する試合
 let maxLength = 2;//この文字数を超えたら次のフォームに移る
 let get;//getで受け取ったデータを入れる
 let inputNumber;//職人の数を記録
-let myVariable;
-let post = {
+let can_id = []//参加できる試合id
+let id;//参加する試合id
+const customButton_1 = document.getElementById('post');
+const customButton_2 = document.getElementById('get');
+let post = {//POST用データのテンプレ
     "turn": 0,
     "actions": []
 };
-let mason_actions = [
+let mason_actions = [//職人の行動を一旦保存する
 
     {
         "type": 0,
@@ -43,12 +46,12 @@ let mason_actions = [
 ];
 
 
-function GET_First() {
+function GET_First() {//参加可能な試合を取得
     Http_1.open('GET', url_1);
     Http_1.send();
 }
 
-function POST() {
+function POST() {//行動計画を送る
     setValue();
     SetPost();
     Http_2.open('POST', url_2, false);
@@ -57,9 +60,10 @@ function POST() {
     Http_2.send(JSON.stringify(post));
 }
 
-function GET_Always() {
+function GET_Always() {//盤面状況を取得
     Http_3.open('GET', url_2);
     Http_3.send();
+    document.getElementById("0").focus();
 }
 
 function moveToNextField(currentField, nextFieldId) {
@@ -91,52 +95,64 @@ function setValue() {//職人の行動番号をjson形式に直す
 
 Http_1.onreadystatechange = (e) => {
     if (Http_1.readyState == 4) {
+        let reception = document.getElementById('reception');
         if (Http_1.status == 200) {
             get = JSON.parse(Http_1.responseText);
-            alert("読み込みに成功しました。");
+            reception.textContent = "受信に成功しました。"
+            GetId(get);
             CheckFirst(get);
             CheckTime(get);
             CheckTotalTurn(get);
         }
         else {
-            alert("読み込みに失敗しました。")
+            reception.textContent = "受信に失敗しました"
         }
     }
 }
 
 Http_2.onreadystatechange = (e) => {//行動計画を送信
     if (Http_2.readyState == 4) {
+        let send = document.getElementById('send');
         if (Http_2.status == 200) {
+            send.textContent = "送信に成功しました。"
             let res = Http_2.responseText;
             console.log(res);
-            alert("送信に成功しました。");
             post.actions = [];
         }
         else {
-            alert("送信に失敗しました。")
+            send.textContent = "送信に失敗しました。"
             post.actions = [];
         }
-    }
-    else {
-        // エラーステータスが返された場合の処理
-        console.log('リクエストがエラーを返しました。ステータスコード: ' + Http_2.status);
     }
 }
 
 Http_3.onreadystatechange = (e) => {//盤面状況を取得
     if (Http_3.readyState == 4) {
+        let reception = document.getElementById('reception');
         if (Http_3.status == 200) {
             get = JSON.parse(Http_3.responseText);
             console.log(get);
-            alert("読み込みに成功しました。");
+            reception.textContent = "受信に成功しました。"
             Checkmason_Number(get);
             CheckCurrentTurn(get);
         }
         else {
-            alert("読み込みに失敗しました。")
+            reception.textContent = "受信に失敗しました"
         }
     }
 }
+
+document.addEventListener('keydown', function (e) {//エンターキーを押したらPOSTボタンが押される
+    if (e.key === 'Enter') {
+        customButton_1.click(); // エンターキーが押されたらボタンをクリック
+    }
+});
+
+document.addEventListener('keydown', function (e) {//エンターキーを押したらGETボタンが押される
+    if (e.shiftKey) {
+        customButton_2.click(); // エンターキーが押されたらボタンをクリック
+    }
+});
 
 function CheckFirst(get) {//先手か後手か確認する
     if (get.matches[0].first) {
@@ -186,10 +202,19 @@ function CheckCurrentTurn(get) {//現在のターンを確認する
     console.log(post.turn);
 }
 
-function SetPost() {
+function SetPost() {//行動計画を作る
     let i;
     for (i = 0; i < inputNumber; i++) {
         post.actions.push(mason_actions[i]);
     }
     console.log(post);
 }
+
+function GetId(get) {
+    for (let matche of get.matches) {
+        can_id.push(matche.id);
+    }
+    alert(can_id);
+}
+
+
