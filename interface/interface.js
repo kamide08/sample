@@ -2,7 +2,7 @@ let Http_1 = new XMLHttpRequest();
 let Http_2 = new XMLHttpRequest();
 let Http_3 = new XMLHttpRequest();
 const url_1 = 'https://www.procon.gr.jp/matches?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';
-const url_2 = 'http://localhost:3000/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';
+const url_2 = 'https://www.procon.gr.jp/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810';
 let btn = document.getElementById('button');
 let game_number;//参加する試合の番号
 let games;//参加する試合
