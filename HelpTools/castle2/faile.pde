@@ -4,7 +4,7 @@ void faile() {
   jsonファイルから壁と職人の位置を読み込み、反映さえる
   */
   // JSONデータを文字列として読み込む
-  String[] jsonDataLines = loadStrings("/Users/matsumotosoya/Downloads/data.text");
+  String[] jsonDataLines = loadStrings("../data.text");
 
   // 文字列の配列を結合して1つの文字列にする
   String jsonData = join(jsonDataLines, "\n");
