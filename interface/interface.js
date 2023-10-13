@@ -82,8 +82,9 @@ function setValue() {//職人の行動番号をjson形式に直す
     let masonNumber = inputNumber;
     for (i = 0; i < masonNumber; i++) {
         action = document.getElementById(i)
-        type = Math.floor(action.value / 10);
-        dir = action.value % 10;
+        action = change(action.value);
+        type = Math.floor(action / 10) - 6;
+        dir = action % 10;
         mason_actions[i].type = type;
         mason_actions[i].dir = dir;
     }
@@ -215,4 +216,34 @@ function GetId(get) {
         can_id.push(matche.id);
     }
     alert(can_id);
+}
+
+function change(a) {
+    let firstChar = a.charAt(0);
+    let secondChar = "";
+
+    if (a.length >= 2) {
+        secondChar = a.charAt(1); // 2文字目を取得
+    }
+
+    if (secondChar == "q") {
+        return firstChar + "1";
+    } else if (secondChar == "w") {
+        return firstChar + "2";
+    } else if (secondChar == "e") {
+        return firstChar + "3";
+    } else if (secondChar == "d") {
+        return firstChar + "4";
+    } else if (secondChar == "c") {
+        return firstChar + "5";
+    } else if (secondChar == "x") {
+        return firstChar + "6";
+    } else if (secondChar == "z") {
+        return firstChar + "7";
+    } else if (secondChar == "a") {
+        return firstChar + "8";
+    }
+
+    // 2文字目が対応しない場合のデフォルト値
+    return firstChar + "0";
 }
