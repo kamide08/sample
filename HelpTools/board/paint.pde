@@ -48,24 +48,6 @@ void paintdraw() {
   fill(255);
   noStroke();
   rect(200, 10, 30 * vertical, 30 * vertical);
-
-  stroke(1);
-  for (int i = 200; i <= 200 + beside * 30; i += 30 ) {
-    line(i, 10, i, 10 + vertical * 30);
-  }
-  for (int j = 10; j <= 10 + vertical * 30; j += 30 ) {
-    line(200, j, 200 + beside * 30, j);
-  }
-
-  for (int i = 0; i < castlenum; i ++ ) {
-    image(castlepi, castleX[i], castleY[i]);
-  }
-
-  for (int i = 0; i < craftsmannum; i ++ ) {
-    image(craftsA, craftsmanAX[i], craftsmanAY[i]);
-    image(craftsB, craftsmanBX[i], craftsmanBY[i]);
-  }
-
   for (int i = 0; i < vertical; i ++ ) {
     for ( int j = 0; j < beside; j ++ ) {
       if (wall[i][j] == 1) {
@@ -81,6 +63,32 @@ void paintdraw() {
         fill(0, 0, 255);
         rect(200 + (i) * 30, 10 + (j) * 30, 30, 30);
       }
+    }
+  }
+
+  stroke(1);
+  for (int i = 200; i <= 200 + beside * 30; i += 30 ) {
+    line(i, 10, i, 10 + vertical * 30);
+  }
+  for (int j = 10; j <= 10 + vertical * 30; j += 30 ) {
+    line(200, j, 200 + beside * 30, j);
+  }
+
+  for (int i = 0; i < castlenum; i ++ ) {
+    image(castlepi, castleX[i], castleY[i]);
+  }
+
+  for (int i = 0; i < craftsmannum; i ++ ) {
+    if (me == 1){
+      image(craftsB, craftsmanBX[i], craftsmanBY[i]);
+      textSize(30);
+      fill(0);
+      text(i + 1,  craftsmanAX[i] + 5, craftsmanAY[i] + 28);
+    }else {
+      image(craftsA, craftsmanAX[i], craftsmanAY[i]);
+      textSize(30);
+      fill(0);
+      text(i + 1,  craftsmanBX[i] + 5, craftsmanBY[i] + 28);
     }
   }
 
@@ -120,12 +128,25 @@ void paintdraw() {
 
   noStroke();
   number = turnmotion - int(turnmotion / 10) * 10;
-  fill(255, 255, 0, fill);
   if (turnmotion >= 20) {
-    image(craftsB, craftsmanBX[number], craftsmanBY[number]);
+    if(me == 1){
+      image(craftsB, craftsmanBX[number], craftsmanBY[number]);
+    }else {
+      textSize(30);
+      fill(0);
+      text(number + 1,  craftsmanBX[number] + 5, craftsmanBY[number] + 28);
+    }
+    fill(255, 255, 0, fill);
     ellipse(craftsmanBX[number] +15, craftsmanBY[number] + 15, 30, 30);
   } else {
-    image(craftsA, craftsmanAX[number], craftsmanAY[number]);
+    if (me == 2){
+      image(craftsA, craftsmanAX[number], craftsmanAY[number]);
+    } else {
+      textSize(30);
+      fill(0);
+      text(number + 1,  craftsmanAX[number] + 5, craftsmanAY[number] + 28);
+    }
+    fill(255, 255, 0, fill);
     ellipse(craftsmanAX[number] +15, craftsmanAY[number] + 15, 30, 30);
   }
   fill += 2;
