@@ -4,7 +4,7 @@ void faile() {
   jsonファイルから壁と職人の位置を読み込み、反映さえる
   */
   // JSONデータを文字列として読み込む
-  String[] jsonDataLines = loadStrings("../data.text");
+  String[] jsonDataLines = loadStrings("/Users/kamiderikuya/Documents/プロコン/data.text");
 
   // 文字列の配列を結合して1つの文字列にする
   String jsonData = join(jsonDataLines, "\n");
@@ -45,9 +45,9 @@ void faile() {
           wall[i][j] = me;
         } else if (structuresArray[i][j] == 2){
           if (me == 1){
-            wall[i][j] = 2;
+            wall[j][i] = 2;
           } else {
-            wall[i][j] = 1;
+            wall[j][i] = 1;
           }
         }
       }
@@ -56,14 +56,14 @@ void faile() {
     int enemy = 0;
     for (int i = 0; i < masonsArray.length; i++) {
       for (int j = 0; j < masonsArray[i].length; j++) {
-        if (masonsArray[i][j] != 0){
-          if (masonsArray[i][j] > 0){
+        if (masonsArray[j][i] != 0){
+          if (masonsArray[j][i] > 0){
             if (me == 1){
-              craftsmanAX[me_] = 200 + i * 30;
-              craftsmanAY[me_] = 10 + j * 30;
+              craftsmanAX[masonsArray[j][i] - 1] = 200 + i * 30;
+              craftsmanAY[masonsArray[j][i] - 1] = 10 + j * 30;
             } else {
-              craftsmanBX[me_] = 202 + i * 30;
-              craftsmanBY[me_] = 12 + j * 30;
+              craftsmanBX[masonsArray[j][i] - 1] = 202 + i * 30;
+              craftsmanBY[masonsArray[j][i] - 1] = 12 + j * 30;
             }
             me_++;
           } else {
