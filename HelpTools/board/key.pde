@@ -11,29 +11,29 @@ void keyPress() {
   概要
   キーが押されたらそのキーに合わせて処理をする
   */
-  if (key == 'h') {
-    motion = 0;
-  } else if (key == 'j') {
+  if (key == '7') {
     motion = 1;
-  } else if (key == 'k') {
+  } else if (key == '8') {
     motion = 2;
-  } else if (key == 'l') {
+  } else if (key == '9') {
     motion = 3;
-  } else if (key == 'e') {
+  } else if (key == '0') {
+    motion = 0;
+  } else if (key == 'q') {
     direction = 1;
-  } else if (key == 'r') {
+  } else if (key == 'w') {
     direction = 2;
-  } else if (key == 't') {
+  } else if (key == 'e') {
     direction = 3;
-  } else if (key == 'g' || key == '4') {
+  } else if (key == 'd' || key == '4') {
     direction = 4;
-  } else if (key == 'b' || key == '5') {
+  } else if (key == 'c' || key == '5') {
     direction = 5;
-  } else if (key == 'v'|| key == '6') {
+  } else if (key == 'x'|| key == '6') {
     direction = 6;
-  } else if (key == 'c'|| key == '7') {
+  } else if (key == 'z'|| key == '7') {
     direction = 7;
-  } else if (key == 'd'|| key == '8') {
+  } else if (key == 'a'|| key == '8') {
     direction = 8;
   } else if (key == 'y') {
     me = 1;

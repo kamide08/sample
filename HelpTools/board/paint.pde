@@ -124,6 +124,18 @@ void paintdraw() {
     if (suport_size <= -1)suport_size = 30;
   }
   
+  fill(255);
+  noStroke();
+  textSize(20);
+  rect(115, 475, 30, 30);
+  rect(130, 575, 30, 30);
+  fill(0);
+  String tem = "motion = " + motion;
+  text(tem, 20, 500);
+  
+  tem = "direction = " + direction;
+  text(tem, 20, 600);
+  
   
 
   noStroke();

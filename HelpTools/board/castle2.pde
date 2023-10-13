@@ -75,7 +75,10 @@ void draw() {
     if (time == 60) {
       time = 0;
       time2 --;
-      if(time2 == 0)time2 = 3;
+      if(time2 == -1){
+        time2 = 2;
+        faile();
+      }
     }
   }
   paintdraw();   //どの職人のターンかを示す丸を描く
