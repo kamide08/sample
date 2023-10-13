@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="interface.css">
-    <title>interface</title>
+    <link rel="stylesheet" href="プロコン接続.css">
+    <title>Document</title>
 </head>
 
 <body>
     <div>
         <p id="TotalTurn">ターン数は</p>
         <p id="game_time">制限時間は</p>
+        <p id="reception">受信に</p>
+        <p id="send">送信に</p>
     </div>
     <div class="main">
         <p id="turn">手番は</p>
@@ -26,12 +28,12 @@
             <input type="number" id="5" placeholder="職人6の行動">
         </form>
         <div class="conneciton">
-            <button class="button" onclick="POST()">POST</button>
-            <button class="button" onclick="GET_Always()"> GET</button>
+            <button class="button" id="post" onclick="POST()">POST</button>
+            <button class="button" id="get" onclick="GET_Always()"> GET</button>
             <button class="button" onclick="GET_First()"> 試合情報取得</button>
         </div>
     </div>
-    <script src="./interface.js">
+    <script src="./プロコン接続_先手.js">
     </script>
 </body>
 
