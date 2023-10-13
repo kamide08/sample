@@ -13,13 +13,17 @@ int main(void)
     if (curl)
     {
         // URLを設定
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.procon.gr.jp/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810");//idは適宜変える
+        curl_easy_setopt(curl, CURLOPT_URL, "https://www.procon.gr.jp/matches/10?token=ishikawaf2fef51f933e2ab4095ca4f690269c76aa01d0fe1a6a0e312f918810");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         // データの取得などのオプションを設定
-
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK)
+            {
+                fprintf(stderr, "Curl error: %s\n", curl_easy_strerror(res));
+            }
         while (1)
         {
-            getchar();
+            sleep(15);
             // リクエストの実行
             res = curl_easy_perform(curl);
 
@@ -40,7 +44,6 @@ size_t WriteCallback(void *contents)
     char *data = (char *)contents; // データを文字列として扱うためにキャスト
 
     // 受信データを標準出力に出力
-    printf("%s", data);
     FILE *fp = fopen("data.text", "w");
     if (fp == NULL)
     {
