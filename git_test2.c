@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 int main(void){
-    printf("コミットをするよ");
+    printf("コミット");
     return 0;
 }
